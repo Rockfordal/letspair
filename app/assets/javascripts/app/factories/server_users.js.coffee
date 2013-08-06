@@ -6,7 +6,7 @@ window.letspair.application.factory 'serverUsers',
 
     $http(
       method: 'GET'
-      url: '/get_users'
+      url: "/get_users/?sort=#{currentSort}"
     ).
     success( (data) ->
       deferred.resolve data

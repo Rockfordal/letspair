@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
     super(only: [:username, :timezone, :skills, :brief_info]).merge!(
       user_avatar:      image_url,
       brief_info:       (default_brief_info if brief_info.blank?),
+      created_at:       created_at,
       userprofile_url:  Rails.application.routes.url_helpers.user_path(self)
     )
   end

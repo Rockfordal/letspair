@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   def index; end
 
   def get_users
-    results = User.all
+    sort = params[:sort]
+    results = User.order(sort).all
     render json: results.to_json
   end
 

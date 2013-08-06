@@ -2,12 +2,19 @@
 
 <div class="users" ng-app="letspair" ng-controller="UsersAllCtrl">
 
+  <input type="text" ng-model="sort">
+  <select ng-model="sort">
+    <option>username</option>
+    <option>timezone</option>
+    <option>created_at</option>
+  </select>
+  <button ng-show="!dir" ng-click="dir = !dir">Ascending</button>
+  <button ng-show="dir" ng-click="dir = !dir">Descending</button>
+
   <ul class="users">
     <div class="no-users" ng-show="users.length == 0">no users</div>
-    <li class="session-full" ng-repeat="user in users | startFrom:currentPage*pageSize | limitTo:pageSize">
+    <li class="session-full" ng-repeat="user in users | orderBy:sort:dir | startFrom:currentPage*pageSize | limitTo:pageSize">
       <userpartial opensContactForm user='user'></userpartial>
-<!--       <usersall opensContactForm user='user'></usersall>
- -->
       <div class="separator-white"></div>
     </li>
   </ul>
